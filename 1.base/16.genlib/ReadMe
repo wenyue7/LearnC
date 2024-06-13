@@ -1,0 +1,14 @@
+生成静态库(linux中后缀名为.a)
+	1. 写好用于生成库的.c和.h文件
+	2. 生成目标文件(.o),  gcc  -c  <.c文件>
+	3. 生成静态库(.a),  ar crv <目标库名> <上一步的.o文件>  说明:目标库命名规则以lib
+	   开头,例如这里可以写libmyhello.a,调用时写-lmyhello
+	4. 使用:在别的.c函数总调用生成的库, 
+	   gcc -o <outFile> <user.c> -I <lib_header_dir> -L <lib_dir> -l<lib_name>  (例如:-lmyhello)
+
+生成动态库(linux中后缀名为.so)
+	1. 写好用于生成库的.c和.h文件
+	2. 生成目标文件(.o),  gcc  -c  <.c文件>
+	3. 生成动态库(.so), gcc -share -fPIC -o <目标.so文件,例如:libmyhello.so>  <上一步的.o文件hello.o>
+	4. 使用:在别的.c函数中调用生成的库
+       gcc -o <outFile> <user.c> -I <lib_header_dir> -L <lib_dir> -l<lib_name> (例如:-lmyhello)
