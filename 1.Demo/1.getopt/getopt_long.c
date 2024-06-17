@@ -65,6 +65,7 @@ int main (int argc, char* argv[])
 			case 'o': /* -o 或 --output */
 				/* 此函数接受一个参数,表示输出文件名。*/
 				output_filename = optarg;
+				(void) output_filename;
 				break;
 			case 'v': /* -v 或 --verbose */
 				verbose = 1;

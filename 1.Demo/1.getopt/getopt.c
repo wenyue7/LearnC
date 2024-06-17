@@ -25,9 +25,12 @@
  * 注意: getopt是用来解析命令行选项参数的，但是只能解析短选项: -d 100,不能解析长选项：--prefix
  */
 
+// usage: ./getopt -a10 -b 20 -c 30 -d
+
 #include<stdio.h>
 #include<unistd.h>
 #include<getopt.h>
+
 int main(int argc, char **argv)
 {
     int opt;
