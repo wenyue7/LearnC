@@ -10,18 +10,12 @@ all: mlib.so
 
 mlib.so :
 	gcc -shared -o libmlib.so mlib.c
-	@# gcc -shared -Wl,-soname,my_soname -o libmlib.so mlib.c
+	gcc -shared -fPIC -o ./newlib/libmlib.so ./newlib/mlib.c
 
 .PHONY:clean
 clean:
-	rm  libmlib.so main
+	rm libmlib.so main ./newlib/libmlib.so
 
 .PHONY:test
 test:
-	@LD_LIBRARY_PATH=`pwd`:$LD_LIBRARY_PATH ./main
-	@# 或
-	@# export LD_LIBRARY_PATH=`pwd`:$LD_LIBRARY_PATH && ./main
-	@# 或
-	@# /lib64/ld-linux-x86-64.so.2 --library-path `pwd` ./main
-	@# 或
-	@# LD_DEBUG=all LD_LIBRARY_PATH=`pwd`:$LD_LIBRARY_PATH ./main
+	LD_PRELOAD=./newlib/libmlib.so LD_LIBRARY_PATH=`pwd`:$LD_LIBRARY_PATH ./main
